@@ -8,7 +8,7 @@ import { mainFunction, startOfSecondHalf } from './BallPosition';
   
   function HeatMap() {
       return (
-        <div>
+        <div className='clearfix'>
           <div className ="Button">
           <button id ='heatmapInstance' onClick = {() => mainFunction( detectedObjects, detectedObject =>{return detectedObject.type === 'ball' && detectedObject.timestamp_ns >=startOfSecondHalf})} >Ball 2nd Half</button>
           </div>
