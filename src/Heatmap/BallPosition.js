@@ -5,6 +5,7 @@ import events from './Events.json'
 import { max } from 'd3';
 //Determine the HalfTime
 const HalfTimeDetection =events.filter( timeFrame => [13,14].includes(timeFrame.eventType)).map( timeFrame => timeFrame.timestamp)
+//Tansform nano sec to sec
 export const endOfFirstHalf = HalfTimeDetection[0]*1000000000 
 export const startOfSecondHalf= HalfTimeDetection[1]*1000000000
 
@@ -40,7 +41,7 @@ const heatmapInstance = h337.create({
   const width =1000
   const height =600
   //Determining max value accordinh to the number of data fpr each catagory 
-  var max = (objectLenght>100000) ? 100 : ((objectLenght>10000) ? 50 : 20)
+  var max = (objectLenght>100000) ? 80 : ((objectLenght>10000) ? 50 : 20)
   console.log(max)
   let min =0
   
@@ -56,7 +57,6 @@ const heatmapInstance = h337.create({
        heatmapInstance.onclick = () => {
       }
   }
-  
 
   function HeatMap() {
       return (
