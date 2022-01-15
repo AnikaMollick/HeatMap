@@ -1,11 +1,11 @@
 import React from 'react'
-import h337 from "heatmap.js";
+import h337 from "heatmapjs";
 import detectedObjects from './player-postions.json'
 import events from './Events.json'
 import { mainFunction, startOfSecondHalf } from './BallPosition';
 
 
-  
+
   function HeatMap() {
       return (
         <div className='clearfix'>

@@ -1,15 +1,15 @@
 import React from 'react'
 import detectedObjects from './player-postions.json'
-import h337 from "heatmap.js";
+import h337 from "heatmapjs";
 import events from './Events.json'
 import { max } from 'd3';
 //Determine the HalfTime
 const HalfTimeDetection =events.filter( timeFrame => [13,14].includes(timeFrame.eventType)).map( timeFrame => timeFrame.timestamp)
 //Tansform nano sec to sec
-export const endOfFirstHalf = HalfTimeDetection[0]*1000000000 
+export const endOfFirstHalf = HalfTimeDetection[0]*1000000000
 export const startOfSecondHalf= HalfTimeDetection[1]*1000000000
 
-//export the main funtion 
+//export the main funtion
 export const mainFunction = (detectedObjects,filterFn) => {
 
   //remove last child to reduce overlapping of heatmaps
@@ -24,7 +24,7 @@ const heatmapInstance = h337.create({
  width:1100,
 //  radius: 30,// (personalization optional)
   });
-  
+
   //Detect the values of x and y axis
   const coords =  detectedObjects.filter(filterFn).map(ball => ({x:ball.top_view_position[0],y:ball.top_view_position[1] }) )
 
@@ -35,16 +35,16 @@ const heatmapInstance = h337.create({
           values[data.x+'-'+data.y] = 0
       values[data.x+'-'+data.y] =+1
   }
-  //Detect the max value 
+  //Detect the max value
   const objectLenght = Object.keys(values).length
   console.log(objectLenght)
   const width =1000
   const height =600
-  //Determining max value accordinh to the number of data fpr each catagory 
+  //Determining max value accordinh to the number of data fpr each catagory
   var max = (objectLenght>100000) ? 80 : ((objectLenght>10000) ? 50 : 20)
   console.log(max)
   let min =0
-  
+
     for (let element of coords)
     { const key = element.x+"-"+element.y
     const value = values[key]
